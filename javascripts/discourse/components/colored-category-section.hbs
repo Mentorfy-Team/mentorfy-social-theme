@@ -4,45 +4,21 @@
       <a 
         class="sidebar-section-link colored-category-item"
         href={{category.url}}
-        style="border-left: 3px solid #{{category.color}};"
+        style="border-left: 3px solid #{{category.color}}; {{if category.parent_category_id "margin-left: 1em;"}}"
         {{on "click" (fn this.navigateToCategory category)}}
       >
         <span class="sidebar-section-link-prefix">
-          {{d-icon "folder"}}
+          {{d-icon (if category.read "check-square" "folder")}}
         </span>
         <span class="sidebar-section-link-content">
           {{category.name}}
-          {{#if category.unreadTopics}}
+          {{#if category.unreadTotal}}
             <span class="sidebar-section-link-suffix unread">
-              {{category.unreadTopics}}
+              {{category.unreadTotal}}
             </span>
           {{/if}}
         </span>
       </a>
-      {{#if category.subcategories}}
-        <div class="subcategories" style="margin-left: 1em;">
-          {{#each category.subcategories as |subcategory|}}
-            <a 
-              class="sidebar-section-link colored-category-item"
-              href={{subcategory.url}}
-              style="border-left: 3px solid #{{subcategory.color}};"
-              {{on "click" (fn this.navigateToCategory subcategory)}}
-            >
-              <span class="sidebar-section-link-prefix">
-                {{d-icon "folder"}}
-              </span>
-              <span class="sidebar-section-link-content">
-                {{subcategory.name}}
-                {{#if subcategory.unreadTopics}}
-                  <span class="sidebar-section-link-suffix unread">
-                    {{subcategory.unreadTopics}}
-                  </span>
-                {{/if}}
-              </span>
-            </a>
-          {{/each}}
-        </div>
-      {{/if}}
     {{/each}}
   </div>
 {{/if}} 
