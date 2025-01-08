@@ -27,11 +27,16 @@ body[class*="category-"] {
 }
 
 .navigation-categories .category-list .topics {
-  padding-right: 20px;
+  padding-right: 18px !important;
 }
 
 .latest-topic-list .table-heading, .top-topic-list .table-heading {
   padding: 12px;
+}
+
+.navigation-categories .category-list tbody .category h3, .navigation-categories .category-list tbody .category h3 {
+  padding-left: 0em !important;
+  border-left: 6px solid var(--category-color);
 }
 
 .categories-and-latest,
