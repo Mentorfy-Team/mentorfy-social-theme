@@ -1,0 +1,36 @@
+Um theme do Discourse é uma customização da plataforma que utiliza uma estrutura específica de arquivos e tecnologias:
+
+1. Estrutura base:
+- about.json: Arquivo de configuração principal que define metadados, esquemas de cores e modificadores
+- settings.yml: Configurações customizáveis do tema
+- /common: Diretório para assets compartilhados
+- /desktop: Customizações específicas para desktop
+- /mobile: Customizações específicas para mobile
+
+2. Tecnologias principais:
+- SCSS/CSS: Estilização avançada com suporte a variáveis e mixins
+- JavaScript: Lógica client-side usando EmberJS (framework principal do Discourse)
+- Handlebars: Templates para componentes de interface
+- JSON: Configurações e metadados
+- YAML: Definição de settings
+
+3. Componentes:
+- Components: Widgets reutilizáveis em EmberJS
+- Helpers: Funções auxiliares em JavaScript
+- Templates: Estruturas HTML com Handlebars
+- Hooks: Pontos de extensão para modificar comportamentos core
+
+4. API e Integrações:
+- Plugin API: Interface para estender funcionalidades
+- Theme Store API: Distribuição e updates
+- Discourse API: Comunicação com backend
+
+5. Build System:
+- Asset pipeline para compilação
+- Transpilação de ES6+ para JavaScript compatível
+- Minificação e otimização de assets
+- Sistema de cache inteligente
+
+O desenvolvimento requer conhecimento em JavaScript moderno, EmberJS, SCSS, e entendimento da arquitetura MVC do Discourse.
+
+

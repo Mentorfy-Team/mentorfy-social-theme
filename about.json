@@ -1,12 +1,12 @@
 {
-  "name": "FKB Pro theme",
+  "name": "Mentorfy Social Theme",
   "license_url": null,
-  "about_url": "https://github.com/VaperinaDEV/fkb-pro-theme",
-  "authors": null,
+  "about_url": "https://github.com/Mentorfy-Team/mentorfy-social-theme",
+  "authors": "Mentorfy Team",
   "assets": {
   },
   "color_schemes": {
-    "FKB Pro - Light": {
+    "Mentorfy Social Theme - Light": {
       "primary": "242526",
       "secondary": "ffffff",
       "tertiary": "147efb",
@@ -20,7 +20,7 @@
       "success": "42b72a",
       "love": "fa6c8d"
     },
-    "FKB Pro - Dark": {
+    "Mentorfy Social Theme - Dark": {
       "primary": "ffffff",
       "secondary": "242526",
       "tertiary": "147efb",
