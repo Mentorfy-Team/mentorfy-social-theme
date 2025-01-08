@@ -22,6 +22,18 @@ body[class*="category-"] {
 
 // Category page
 
+.category-list td:first-of-type {
+  padding-left: 20px;
+}
+
+.navigation-categories .category-list .topics {
+  padding-right: 20px;
+}
+
+.latest-topic-list .table-heading, .top-topic-list .table-heading {
+  padding: 12px;
+}
+
 .categories-and-latest,
 .categories-and-top {
   div.column {

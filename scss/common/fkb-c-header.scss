@@ -2,6 +2,19 @@
 :root {
   --d-max-width: unset;
 }
+
+.powered-by-discourse {
+  display: none;
+}
+
+.admin-page-header__learn-more {
+  display: none;
+}
+
+.admin-new-feature-item__learn-more {
+  display: none !important;
+}
+
 // Header
 
 .d-header {
