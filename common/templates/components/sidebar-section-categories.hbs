@@ -1,0 +1,38 @@
+<div class="sidebar-section-wrapper">
+  {{!-- Cabeçalho da seção --}}
+  <div class="sidebar-section-header">
+    <span class="sidebar-section-header-text">
+      {{i18n "sidebar.sections.categories.title"}}
+    </span>
+    {{#if this.shouldDisplaySectionHeader}}
+      {{d-button
+        class="sidebar-section-header-button"
+        icon="pencil-alt"
+        action=(action "editSection")
+        title="sidebar.sections.categories.edit"}}
+    {{/if}}
+  </div>
+
+  {{!-- Lista de categorias --}}
+  <div class="sidebar-section-content">
+    {{#each this.sectionLinks as |sectionLink|}}
+      <div class="sidebar-section-link-wrapper">
+        <a href={{sectionLink.href}} 
+           class="sidebar-section-link {{if sectionLink.active 'active'}}"
+           title={{sectionLink.title}}>
+          {{#if sectionLink.icon}}
+            {{d-icon sectionLink.icon}}
+          {{/if}}
+          <span class="sidebar-section-link-content">
+            {{sectionLink.text}}
+            {{#if sectionLink.badgeText}}
+              <span class="sidebar-section-link-badge">
+                {{sectionLink.badgeText}}
+              </span>
+            {{/if}}
+          </span>
+        </a>
+      </div>
+    {{/each}}
+  </div>
+</div> 
