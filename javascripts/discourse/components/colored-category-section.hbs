@@ -1,0 +1,48 @@
+{{#if this.categories}}
+  <div class="sidebar-section-link-wrapper colored-categories">
+    {{#each this.categories as |category|}}
+      <a 
+        class="sidebar-section-link colored-category-item"
+        href={{category.url}}
+        style="border-left: 3px solid #{{category.color}};"
+        {{on "click" (fn this.navigateToCategory category)}}
+      >
+        <span class="sidebar-section-link-prefix">
+          {{d-icon "folder"}}
+        </span>
+        <span class="sidebar-section-link-content">
+          {{category.name}}
+          {{#if category.unreadTopics}}
+            <span class="sidebar-section-link-suffix unread">
+              {{category.unreadTopics}}
+            </span>
+          {{/if}}
+        </span>
+      </a>
+      {{#if category.subcategories}}
+        <div class="subcategories" style="margin-left: 1em;">
+          {{#each category.subcategories as |subcategory|}}
+            <a 
+              class="sidebar-section-link colored-category-item"
+              href={{subcategory.url}}
+              style="border-left: 3px solid #{{subcategory.color}};"
+              {{on "click" (fn this.navigateToCategory subcategory)}}
+            >
+              <span class="sidebar-section-link-prefix">
+                {{d-icon "folder"}}
+              </span>
+              <span class="sidebar-section-link-content">
+                {{subcategory.name}}
+                {{#if subcategory.unreadTopics}}
+                  <span class="sidebar-section-link-suffix unread">
+                    {{subcategory.unreadTopics}}
+                  </span>
+                {{/if}}
+              </span>
+            </a>
+          {{/each}}
+        </div>
+      {{/if}}
+    {{/each}}
+  </div>
+{{/if}} 

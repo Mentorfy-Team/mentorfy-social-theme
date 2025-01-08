@@ -5,3 +5,43 @@
 .sidebar-more-section-links-details-summary.json-editor-btn-collapse {
   border-radius: 0;
 }
+
+// Colored Categories Styles
+.colored-categories {
+  .colored-category-item {
+    margin: 0.25em 0;
+    padding: 0.5em 0.75em;
+    border-radius: 0.25em;
+    transition: background-color 0.2s ease;
+    
+    &:hover {
+      background-color: var(--primary-low);
+    }
+
+    .sidebar-section-link-prefix {
+      color: var(--primary-medium);
+      margin-right: 0.5em;
+    }
+
+    .sidebar-section-link-content {
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    .unread {
+      background: var(--tertiary-med-or-tertiary);
+      color: var(--secondary);
+      padding: 0.2em 0.5em;
+      border-radius: 1em;
+      font-size: 0.85em;
+    }
+  }
+
+  .subcategories {
+    margin-top: 0.25em;
+    
+    .colored-category-item {
+      font-size: 0.95em;
+    }
+  }
+}
