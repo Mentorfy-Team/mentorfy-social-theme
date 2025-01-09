@@ -26,12 +26,9 @@
     align-items: center;
     padding-right: 0 !important;
   }
+}
 
-  // Style for subcategories - using the URL pattern of parent/subcategory in href
-  a[href^="/c/"] {
-    $pattern: "/c/[^/]+/[^/]+/[0-9]+$";
-    @if str-match(attr(href), $pattern) {
-      padding-left: 45px;
-    }
-  }
+// Style for subcategories
+.is-subcategory-link {
+  padding-left: 45px;
 }

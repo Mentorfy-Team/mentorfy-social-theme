@@ -27,6 +27,9 @@ export default {
             const parentSlug = parts[1]; // nome da categoria pai
             console.log("👆 Identificada subcategoria. Categoria pai:", parentSlug);
             
+            // Adiciona classe na subcategoria
+            link.classList.add('is-subcategory-link');
+            
             // Encontrar a categoria pai pelo slug no href
             const parentCategory = Array.from(sidebarCategories).find(cat => {
               const parentHref = cat.querySelector('a')?.getAttribute('href');
