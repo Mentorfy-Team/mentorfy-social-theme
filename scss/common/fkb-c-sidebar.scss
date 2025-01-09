@@ -27,9 +27,8 @@
     padding-right: 0 !important;
   }
 
-  &[data-category-id] {
-    a[href*="/c/"][href*="//"]:not([href$="/c/"]) {
-      padding-left: 45px !important;
-    }
+  // Style for subcategories - using the URL pattern of parent/subcategory in href
+  a[href*="/c/"][href*="/"][href*="/"] {
+    padding-left: 45px;
   }
 }
