@@ -57,7 +57,7 @@ export default {
                 
                 const linkContent = parentCategory.querySelector('.sidebar-section-link-content-text');
                 if (linkContent) {
-                  linkContent.parentNode.insertBefore(toggleBtn, linkContent);
+                  linkContent.parentNode.insertBefore(toggleBtn, linkContent.nextSibling);
                   
                   // Restore state from localStorage
                   const isCollapsed = localStorage.getItem(`category-${parentId}-collapsed`) === 'true';

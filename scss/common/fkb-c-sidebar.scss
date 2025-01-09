@@ -11,9 +11,19 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  margin-left: auto;
+  padding: 0 8px !important;
   
   .d-icon {
     width: 0.8em;
     height: 0.8em;
+  }
+}
+
+.sidebar-section-link-wrapper {
+  .sidebar-section-link {
+    display: flex !important;
+    align-items: center;
+    padding-right: 0 !important;
   }
 }
