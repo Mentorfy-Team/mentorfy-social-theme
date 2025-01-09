@@ -5,3 +5,32 @@
 .sidebar-more-section-links-details-summary.json-editor-btn-collapse {
   border-radius: 0;
 }
+
+.category-toggle {
+  transition: transform 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  padding: 0 8px !important;
+  
+  .d-icon {
+    width: 0.8em;
+    height: 0.8em;
+  }
+}
+
+.sidebar-section-link-wrapper {
+  .sidebar-section-link {
+    display: flex !important;
+    align-items: center;
+    padding-right: 0 !important;
+  }
+}
+
+// Style for subcategories
+.is-subcategory-wrapper {
+  .sidebar-section-link {
+    padding-left: 45px;
+  }
+}
