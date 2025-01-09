@@ -26,4 +26,10 @@
     align-items: center;
     padding-right: 0 !important;
   }
+
+  &[data-category-id] {
+    a[href*="/c/"][href*="//"]:not([href$="/c/"]) {
+      padding-left: 45px !important;
+    }
+  }
 }
