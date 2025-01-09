@@ -230,6 +230,12 @@
         .latest-activity-tlist {
           margin-right: 0.667em;
         }
+        .reply-link {
+          margin-left: 0.667em;
+          &:hover {
+            color: var(--tertiary);
+          }
+        }
       }
     }
   }
