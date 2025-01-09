@@ -4,12 +4,10 @@ export default {
   name: "colored-categories",
   initialize() {
     withPluginApi("0.8.7", (api) => {
-      api.modifyClass("component:sidebar-section-link", {
+      api.modifyClass("component:sidebar-section-categories", {
         pluginId: "colored-categories",
         
-        get sectionComponent() {
-          return "colored-category-section";
-        }
+        defaultComponentName: "colored-category-section"
       });
     });
   },
