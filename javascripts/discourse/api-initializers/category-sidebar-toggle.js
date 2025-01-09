@@ -5,9 +5,9 @@ export default {
   initialize() {
     withPluginApi("0.8.7", (api) => {
       api.onPageChange(() => {
-        console.log("🔍 Iniciando detecção de categorias...");
+        //console.log("🔍 Iniciando detecção de categorias...");
         const sidebarCategories = document.querySelectorAll('.sidebar-section-link-wrapper[data-category-id]');
-        console.log("📋 Total de categorias encontradas:", sidebarCategories.length);
+        //console.log("📋 Total de categorias encontradas:", sidebarCategories.length);
         
         const categoryRelations = new Map();
         
@@ -15,17 +15,17 @@ export default {
         for (const category of sidebarCategories) {
           const link = category.querySelector('a');
           const href = link?.getAttribute('href');
-          console.log("🔗 Analisando categoria com href:", href);
+          //console.log("🔗 Analisando categoria com href:", href);
           
           if (!href) continue;
           
           // Padrão de subcategoria: /c/categoria-pai/subcategoria/id
           const parts = href.split('/').filter(Boolean);
-          console.log("📊 Partes do href:", parts);
+          //console.log("📊 Partes do href:", parts);
           
           if (parts.length > 3) { // É uma subcategoria
             const parentSlug = parts[1]; // nome da categoria pai
-            console.log("👆 Identificada subcategoria. Categoria pai:", parentSlug);
+            //console.log("👆 Identificada subcategoria. Categoria pai:", parentSlug);
             
             // Adiciona classe no wrapper ao invés do link
             category.classList.add('is-subcategory-wrapper');
@@ -39,20 +39,20 @@ export default {
             });
             
             if (!parentCategory) {
-              console.log("⚠️ Categoria pai não encontrada para:", href);
+              //console.log("⚠️ Categoria pai não encontrada para:", href);
               continue;
             }
             
             const parentId = parentCategory.dataset.categoryId;
-            console.log("✅ Categoria pai encontrada, ID:", parentId);
+            //console.log("✅ Categoria pai encontrada, ID:", parentId);
             
             if (!categoryRelations.has(parentId)) {
               categoryRelations.set(parentId, []);
-              console.log("📝 Criando nova relação para categoria pai:", parentId);
+              //console.log("📝 Criando nova relação para categoria pai:", parentId);
               
               // Add toggle button if not exists
               if (!parentCategory.querySelector('.category-toggle')) {
-                console.log("➕ Adicionando botão toggle para categoria:", parentId);
+                //console.log("➕ Adicionando botão toggle para categoria:", parentId);
                 const toggleBtn = document.createElement('button');
                 toggleBtn.className = 'category-toggle';
                 toggleBtn.innerHTML = '<svg class="fa d-icon d-icon-angle-down svg-icon svg-string" xmlns="http://www.w3.org/2000/svg"><use href="#angle-down"></use></svg>';
@@ -67,7 +67,7 @@ export default {
                   
                   // Restore state from localStorage
                   const isCollapsed = localStorage.getItem(`category-${parentId}-collapsed`) === 'true';
-                  console.log("💾 Estado restaurado para categoria:", parentId, "collapsed:", isCollapsed);
+                  //console.log("💾 Estado restaurado para categoria:", parentId, "collapsed:", isCollapsed);
                   if (isCollapsed) {
                     toggleBtn.classList.add('collapsed');
                     toggleBtn.style.transform = 'rotate(-90deg)';
@@ -77,18 +77,18 @@ export default {
             }
             
             categoryRelations.get(parentId).push(category);
-            console.log("🔗 Adicionada relação: pai", parentId, "-> filho:", category.dataset.categoryId);
+            //console.log("🔗 Adicionada relação: pai", parentId, "-> filho:", category.dataset.categoryId);
             
             // Apply initial state
             const isCollapsed = localStorage.getItem(`category-${parentId}-collapsed`) === 'true';
             if (isCollapsed) {
               category.style.display = 'none';
-              console.log("👻 Escondendo subcategoria:", category.dataset.categoryId);
+              //console.log("👻 Escondendo subcategoria:", category.dataset.categoryId);
             }
           }
         }
         
-        console.log("📊 Relações finais:", Object.fromEntries(categoryRelations));
+        //console.log("📊 Relações finais:", Object.fromEntries(categoryRelations));
         
         // Add click handlers
         for (const toggle of document.querySelectorAll('.category-toggle')) {
@@ -102,13 +102,13 @@ export default {
               const parentId = parentCategory?.dataset.categoryId;
               if (!parentId) return;
               
-              console.log("🖱️ Click no toggle da categoria:", parentId);
+              //console.log("🖱️ Click no toggle da categoria:", parentId);
               const isCollapsed = toggle.classList.toggle('collapsed');
               localStorage.setItem(`category-${parentId}-collapsed`, isCollapsed);
               toggle.style.transform = isCollapsed ? 'rotate(-90deg)' : '';
               
               const children = categoryRelations.get(parentId) || [];
-              console.log("🔄 Alterando visibilidade de", children.length, "subcategorias");
+              //console.log("🔄 Alterando visibilidade de", children.length, "subcategorias");
               for (const child of children) {
                 child.style.display = isCollapsed ? 'none' : '';
                 // Garante que a classe seja mantida mesmo após o toggle
