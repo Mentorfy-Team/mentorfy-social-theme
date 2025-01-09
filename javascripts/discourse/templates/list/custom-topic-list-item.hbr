@@ -84,7 +84,7 @@
       {{number topic.replyCount noTitle="true"}} {{d-icon "far-comment"}}
     </a>
     <a href="{{topic.url}}#reply" class="reply-link">
-      {{theme-i18n "reply"}}
+      {{d-icon "reply"}} {{theme-i18n "reply"}}
     </a>
   </div>
 </div>
