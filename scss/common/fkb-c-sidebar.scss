@@ -28,7 +28,7 @@
   }
 
   // Style for subcategories - using the URL pattern of parent/subcategory in href
-  a[href*="/c/"][href*="/"][href*="/"] {
+  a[href*="/c/"][href^="/c/"]:not([href*="//"]):-webkit-any([href*="/"][href*="/"][href*="/"]) {
     padding-left: 45px;
   }
 }
