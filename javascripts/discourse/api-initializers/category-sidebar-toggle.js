@@ -59,8 +59,14 @@ export default {
                 toggleBtn.style.cssText = 'background: none; border: none; padding: 0 5px; cursor: pointer;';
                 
                 const linkContent = parentCategory.querySelector('.sidebar-section-link-content-text');
+                const unreadIcon = parentCategory.querySelector('.sidebar-section-link-suffix');
+                
                 if (linkContent) {
-                  linkContent.parentNode.insertBefore(toggleBtn, linkContent.nextSibling);
+                  if (unreadIcon) {
+                    unreadIcon.parentNode.insertBefore(toggleBtn, unreadIcon);
+                  } else {
+                    linkContent.parentNode.insertBefore(toggleBtn, linkContent.nextSibling);
+                  }
                   
                   // Restore state from localStorage
                   const isCollapsed = localStorage.getItem(`category-${parentId}-collapsed`) === 'true';
