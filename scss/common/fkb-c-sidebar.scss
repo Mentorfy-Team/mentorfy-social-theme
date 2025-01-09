@@ -8,11 +8,18 @@
 
 // Colored Categories Styles
 .colored-categories {
+  .category-group {
+    margin: 0.25em 0;
+  }
+
   .colored-category-item {
+    display: flex;
+    align-items: center;
     margin: 0.25em 0;
     padding: 0.5em 0.75em;
     border-radius: 0.25em;
     transition: background-color 0.2s ease;
+    text-decoration: none;
     
     &:hover {
       background-color: var(--primary-low);
@@ -26,6 +33,7 @@
     .sidebar-section-link-content {
       color: var(--primary);
       font-weight: 500;
+      flex: 1;
     }
 
     .unread {
@@ -35,6 +43,24 @@
       border-radius: 1em;
       font-size: 0.85em;
     }
+
+    .toggle-subcategories {
+      background: none;
+      border: none;
+      padding: 0.25em;
+      color: var(--primary-medium);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        color: var(--primary);
+      }
+
+      .d-icon {
+        width: 0.8em;
+        height: 0.8em;
+      }
+    }
   }
 
   .subcategories {
@@ -42,6 +68,8 @@
     
     .colored-category-item {
       font-size: 0.95em;
+      margin-left: 1em;
+      padding-left: 1.5em;
     }
   }
 }

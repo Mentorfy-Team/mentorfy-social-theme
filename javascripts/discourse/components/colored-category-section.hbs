@@ -1,24 +1,59 @@
-{{#if this.categories}}
+{{#if this.categoriesWithChildren}}
   <div class="sidebar-section-link-wrapper colored-categories">
-    {{#each this.categories as |category|}}
-      <a 
-        class="sidebar-section-link colored-category-item"
-        href={{category.url}}
-        style="border-left: 3px solid #{{category.color}}; {{if category.parent_category_id "margin-left: 1em;"}}"
-        {{on "click" (fn this.navigateToCategory category)}}
-      >
-        <span class="sidebar-section-link-prefix">
-          {{d-icon (if category.read "check-square" "folder")}}
-        </span>
-        <span class="sidebar-section-link-content">
-          {{category.name}}
-          {{#if category.unreadTotal}}
-            <span class="sidebar-section-link-suffix unread">
-              {{category.unreadTotal}}
-            </span>
+    {{#each this.categoriesWithChildren as |category|}}
+      <div class="category-group">
+        <a 
+          class="sidebar-section-link colored-category-item"
+          href={{category.url}}
+          {{on "click" (fn this.navigateToCategory category)}}
+          style="border-left: 3px solid #{{category.color}};"
+        >
+          <span class="sidebar-section-link-prefix">
+            {{d-icon (if category.read "check-square" "folder")}}
+          </span>
+          <span class="sidebar-section-link-content">
+            {{category.name}}
+            {{#if category.unreadTotal}}
+              <span class="sidebar-section-link-suffix unread">
+                {{category.unreadTotal}}
+              </span>
+            {{/if}}
+          </span>
+          {{#if category.subcategories}}
+            <button 
+              class="toggle-subcategories"
+              {{on "click" (fn this.toggleSubcategories category.id)}}
+            >
+              {{d-icon (if (this.isExpanded category.id) "caret-down" "caret-right")}}
+            </button>
           {{/if}}
-        </span>
-      </a>
+        </a>
+
+        {{#if (and category.subcategories (this.isExpanded category.id))}}
+          <div class="subcategories">
+            {{#each category.subcategories as |subcategory|}}
+              <a 
+                class="sidebar-section-link colored-category-item"
+                href={{subcategory.url}}
+                {{on "click" (fn this.navigateToCategory subcategory)}}
+                style="border-left: 3px solid #{{subcategory.color}}; margin-left: 1em;"
+              >
+                <span class="sidebar-section-link-prefix">
+                  {{d-icon (if subcategory.read "check-square" "folder")}}
+                </span>
+                <span class="sidebar-section-link-content">
+                  {{subcategory.name}}
+                  {{#if subcategory.unreadTotal}}
+                    <span class="sidebar-section-link-suffix unread">
+                      {{subcategory.unreadTotal}}
+                    </span>
+                  {{/if}}
+                </span>
+              </a>
+            {{/each}}
+          </div>
+        {{/if}}
+      </div>
     {{/each}}
   </div>
 {{/if}} 

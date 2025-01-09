@@ -4,7 +4,7 @@ export default {
   name: "colored-categories",
   initialize() {
     withPluginApi("0.8.7", (api) => {
-      api.modifyClass("discourse/components/sidebar/categories-section", {
+      api.modifyClass("discourse/components/sidebar/section-link", {
         pluginId: "colored-categories",
         
         get sectionComponent() {
@@ -14,3 +14,4 @@ export default {
     });
   },
 }; 
+
