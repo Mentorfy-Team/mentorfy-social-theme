@@ -26,6 +26,16 @@
     align-items: center;
     padding-right: 0 !important;
   }
+  
+  .sidebar-section-link-toggle-container {
+    order: 2;
+    margin-left: auto;
+  }
+  
+  .sidebar-section-link-suffix {
+    order: 3;
+    margin-left: 0;
+  }
 }
 
 // Style for subcategories

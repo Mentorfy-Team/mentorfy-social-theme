@@ -58,15 +58,15 @@ export default {
                 toggleBtn.innerHTML = '<svg class="fa d-icon d-icon-angle-down svg-icon svg-string" xmlns="http://www.w3.org/2000/svg"><use href="#angle-down"></use></svg>';
                 toggleBtn.style.cssText = 'background: none; border: none; padding: 0 5px; cursor: pointer;';
                 
-                const linkContent = parentCategory.querySelector('.sidebar-section-link-content-text');
-                const unreadIcon = parentCategory.querySelector('.sidebar-section-link-suffix');
+                // Criar um container para o toggle button para manter posição consistente
+                const toggleContainer = document.createElement('span');
+                toggleContainer.className = 'sidebar-section-link-toggle-container';
+                toggleContainer.appendChild(toggleBtn);
                 
+                const linkContent = parentCategory.querySelector('.sidebar-section-link-content-text');
                 if (linkContent) {
-                  if (unreadIcon) {
-                    unreadIcon.parentNode.insertBefore(toggleBtn, unreadIcon);
-                  } else {
-                    linkContent.parentNode.insertBefore(toggleBtn, linkContent.nextSibling);
-                  }
+                  // Sempre inserir após o texto do link
+                  linkContent.parentNode.insertBefore(toggleContainer, linkContent.nextSibling);
                   
                   // Restore state from localStorage
                   const isCollapsed = localStorage.getItem(`category-${parentId}-collapsed`) === 'true';
