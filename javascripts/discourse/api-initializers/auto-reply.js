@@ -6,6 +6,12 @@ export default {
   initialize() {
     withPluginApi("0.8.31", (api) => {
       api.onAppEvent('page:topic-loaded', (data) => {
+        console.log("👆 page:topic-loaded", window.location, data);
+
+        setTimeout(() => {
+            console.log("👆 page:topic-loaded timeout", window.location, data);
+        }, 2000)
+
         if (new URLSearchParams(window.location.search).get('reply') === 'true') {
           const composer = api.container.lookup("controller:composer");
           const topicController = api.container.lookup("controller:topic");
