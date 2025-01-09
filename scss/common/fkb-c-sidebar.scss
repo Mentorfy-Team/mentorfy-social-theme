@@ -34,3 +34,14 @@
     padding-left: 45px;
   }
 }
+
+// Style for unread suffix icon
+.sidebar-section-link-suffix {
+  .d-icon {
+    &.unread {
+      position: absolute;
+      right: 30px;
+    }
+  }
+}
+
