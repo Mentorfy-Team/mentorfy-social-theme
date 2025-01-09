@@ -22,17 +22,18 @@ export default {
         }
       };
 
-      // Handle initial load with #reply
-      if (window.location.hash === "#reply") {
-        setTimeout(openReplyComposer, 500);
-      }
-
-      // Handle hash changes to #reply
-      window.addEventListener("hashchange", (e) => {
-        if (window.location.hash === "#reply") {
+      const checkAndOpenReply = () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('reply') === 'true') {
           setTimeout(openReplyComposer, 500);
         }
-      });
+      };
+
+      // Handle initial load
+      checkAndOpenReply();
+
+      // Handle URL changes
+      api.onAppEvent('page:changed', checkAndOpenReply);
     });
   },
 }; 
