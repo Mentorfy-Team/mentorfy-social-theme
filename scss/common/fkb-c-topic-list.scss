@@ -231,7 +231,10 @@
           margin-right: 0.667em;
         }
         .reply-link {
-          margin-left: 0.667em;
+          margin-left: 0.567em;
+          display: flex;
+          gap: 6px;
+
           &:hover {
             color: var(--tertiary);
           }
