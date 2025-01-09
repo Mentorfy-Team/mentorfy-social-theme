@@ -28,8 +28,8 @@
   }
 
   // Style for subcategories - using the URL pattern of parent/subcategory in href
-  a[href^="/c/"][href*="/"]:not([href*="//"]) {
-    $pattern: "/c/[^/]+/[^/]+/";
+  a[href^="/c/"] {
+    $pattern: "/c/[^/]+/[^/]+/[0-9]+$";
     @if str-match(attr(href), $pattern) {
       padding-left: 45px;
     }
