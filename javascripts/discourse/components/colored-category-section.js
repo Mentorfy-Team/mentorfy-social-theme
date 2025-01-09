@@ -9,6 +9,15 @@ export default class ColoredCategorySection extends Component {
   @service site;
   @tracked expandedCategories = new Set();
 
+  constructor() {
+    super(...arguments);
+    // Inicializar o estado do localStorage
+    const savedState = localStorage.getItem("category_expanded_state");
+    if (savedState) {
+      this.expandedCategories = new Set(JSON.parse(savedState));
+    }
+  }
+
   get categoriesWithChildren() {
     const categories = this.args.sectionModel?.categories || [];
     const parentCategories = categories.filter(c => !c.parent_category_id);
@@ -24,11 +33,20 @@ export default class ColoredCategorySection extends Component {
     event.preventDefault();
     event.stopPropagation();
     
-    if (this.expandedCategories.has(categoryId)) {
-      this.expandedCategories.delete(categoryId);
+    const newState = new Set(this.expandedCategories);
+    if (newState.has(categoryId)) {
+      newState.delete(categoryId);
     } else {
-      this.expandedCategories.add(categoryId);
+      newState.add(categoryId);
     }
+    
+    // Salvar estado no localStorage
+    localStorage.setItem(
+      "category_expanded_state", 
+      JSON.stringify(Array.from(newState))
+    );
+    
+    this.expandedCategories = newState;
   }
 
   @action
