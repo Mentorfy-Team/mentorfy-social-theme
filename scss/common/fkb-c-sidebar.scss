@@ -37,11 +37,7 @@
 
 // Style for unread suffix icon
 .sidebar-section-link-suffix {
-  .icon {
-    &.unread {
-      position: absolute;
-      right: 30px;
-    }
-  }
+  position: absolute;
+  right: 30px;
 }
 
