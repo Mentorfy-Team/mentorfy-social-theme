@@ -27,8 +27,8 @@ export default {
             const parentSlug = parts[1]; // nome da categoria pai
             console.log("👆 Identificada subcategoria. Categoria pai:", parentSlug);
             
-            // Adiciona classe na subcategoria
-            link.classList.add('is-subcategory-link');
+            // Adiciona classe no wrapper ao invés do link
+            category.classList.add('is-subcategory-wrapper');
             
             // Encontrar a categoria pai pelo slug no href
             const parentCategory = Array.from(sidebarCategories).find(cat => {
@@ -108,6 +108,8 @@ export default {
               console.log("🔄 Alterando visibilidade de", children.length, "subcategorias");
               for (const child of children) {
                 child.style.display = isCollapsed ? 'none' : '';
+                // Garante que a classe seja mantida mesmo após o toggle
+                child.classList.add('is-subcategory-wrapper');
               }
             });
           }

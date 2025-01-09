@@ -29,6 +29,8 @@
 }
 
 // Style for subcategories
-.is-subcategory-link {
-  padding-left: 45px;
+.is-subcategory-wrapper {
+  .sidebar-section-link {
+    padding-left: 45px;
+  }
 }
