@@ -5,12 +5,12 @@ export default {
   name: "auto-reply",
   initialize() {
     withPluginApi("0.8.31", (api) => {
-      if (new URLSearchParams(window.location.search).get('reply') === 'true') {
-        const composer = api.container.lookup("controller:composer");
-        const topicController = api.container.lookup("controller:topic");
+      api.onAppEvent('page:topic-loaded', (data) => {
+        if (new URLSearchParams(window.location.search).get('reply') === 'true') {
+          const composer = api.container.lookup("controller:composer");
+          const topicController = api.container.lookup("controller:topic");
 
-        if (topicController) {
-          setTimeout(() => {
+          if (topicController) {
             const topic = topicController.get("model");
             if (topic) {
               composer.open({
@@ -20,9 +20,9 @@ export default {
                 topic,
               });
             }
-          }, 0);
+          }
         }
-      }
+      });
     });
   },
 }; 
