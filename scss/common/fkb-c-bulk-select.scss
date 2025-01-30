@@ -3,23 +3,44 @@
   .user-messages-page,
   body[class*="tag-"]:not(.archetype-regular):not(.archetype-banner),
   body[class*="category-"]:not(.archetype-regular):not(.archetype-banner) {
-    &.bulk-select-enabled {
-      .mobile-view & {
-        .list-controls {
-          .navigation-container {
-            .navigation-controls {
-              > *:not(.dismiss-container-top) {
-                display: none;
-              }
-            }
-          }
-        }
-      }
-    }
     // Safari requires as it handle tpl as table-row and position absolute / relative not works
     .topic-list {
       .topic-list-item {
         display: block;
+      }
+    }
+    .mobile-view & {
+      .topic-list-item:first-child {
+        .topic-list-data.bulk-select-enabled {
+          .pull-left,
+          .pull-left label {
+            top: 0;
+            height: calc(100% - 4px);
+          }
+        }
+      }
+      .topic-list-data.bulk-select-enabled {
+        .pull-left,
+        .pull-left label {
+          position: absolute;
+          left: 0;
+          top: 4px;
+          z-index: 3;
+          width: 100%;
+          height: calc(100% - 8px);
+        }
+        .pull-left {
+          display: block !important;
+          label {
+            background: rgba(var(--tertiary-rgb), 0.06);
+            border-radius: var(--d-default-border-radius);
+            input {
+              position: absolute;
+              top: 1em;
+              right: 1em;
+            }
+          }
+        }
       }
     }
     .topic-list {
@@ -73,9 +94,6 @@
           }
           th.bulk-select.topic-list-data {
             width: auto !important;
-            > button.bulk-select {
-              display: none;
-            }
           }
           th.default.topic-list-data {
             .bulk-select-topics {
@@ -125,6 +143,7 @@
           .topic-list-data {
             &.bulk-select {
               top: 0;
+              left: 0;
               .mobile-view & {
                 padding-top: 0;
                 margin-top: -1px;
@@ -139,10 +158,7 @@
           &.bulk-select {
             position: absolute;
             top: 8px;
-            .mobile-view & {
-              top: 0;
-            }
-            left: 0;          
+            left: 0;
             width: 100%;
             height: 100%;
             max-width: 100%;
@@ -152,7 +168,7 @@
               flex-direction: row-reverse;
               padding: 10px;
               height: calc(100% - 36px);
-              background: rgba(var(--tertiary-rgb), 0.03);
+              background: rgba(var(--tertiary-rgb), 0.06);
               border-radius: var(--d-default-border-radius);
               .mobile-view & {
                 margin-top: 1px;

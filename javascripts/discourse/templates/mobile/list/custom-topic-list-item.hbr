@@ -83,8 +83,5 @@
       {{raw-plugin-outlet name="topic-list-before-reply-count"}}
       {{number topic.replyCount noTitle="true"}} {{d-icon "far-comment"}}
     </a>
-    <a href="{{topic.url}}?reply=true" class="reply-link">
-      {{d-icon "reply"}} {{theme-i18n "reply"}}
-    </a>
   </div>
 </div>
