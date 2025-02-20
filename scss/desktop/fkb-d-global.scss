@@ -4,7 +4,7 @@
 
 #main-outlet-wrapper {
   padding: 0 1em;
-  max-width: 1440px;
+  max-width: 1440px !important;
   #main-outlet {
     padding-top: 2em;
     .has-full-page-chat & {
