@@ -22,52 +22,10 @@ export default class TliMiddleSection extends Component {
     return htmlSafe(`background-image: url(${this.topic.image_url})`);
   }
 
-  get isVideoUrl() {
-    if (!this.topic.image_url) return false;
-    
-    // Detecta se a URL da imagem é de um vídeo (YouTube, Vimeo, etc.)
-    return (
-      this.topic.image_url.includes("youtube.com") ||
-      this.topic.image_url.includes("youtu.be") ||
-      this.topic.image_url.includes("vimeo.com") ||
-      this.topic.image_url.includes("video")
-    );
-  }
-
-  get videoEmbedHtml() {
-    if (!this.isVideoUrl) return "";
-    
-    // Extrair o ID do vídeo do YouTube ou Vimeo
-    let videoId = "";
-    let embedHtml = "";
-    
-    if (this.topic.image_url.includes("youtube.com") || this.topic.image_url.includes("youtu.be")) {
-      // Para YouTube
-      if (this.topic.image_url.includes("youtube.com/watch?v=")) {
-        videoId = this.topic.image_url.split("v=")[1].split("&")[0];
-      } else if (this.topic.image_url.includes("youtu.be/")) {
-        videoId = this.topic.image_url.split("youtu.be/")[1].split("?")[0];
-      }
-      
-      if (videoId) {
-        embedHtml = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`;
-      }
-    } else if (this.topic.image_url.includes("vimeo.com")) {
-      // Para Vimeo
-      videoId = this.topic.image_url.split("vimeo.com/")[1].split("?")[0];
-      
-      if (videoId) {
-        embedHtml = `<iframe width="100%" height="100%" src="https://player.vimeo.com/video/${videoId}" frameborder="0" allowfullscreen></iframe>`;
-      }
-    }
-    
-    return htmlSafe(embedHtml);
-  }
-
   <template>
     <div class="tli-middle-section">
       {{#if this.topic.hasExcerpt}}
-        <div class="topic-excerpt topic-excerpt-extended">
+        <div class="topic-excerpt">
           <a href={{this.topic.url}} class="topic-excerpt-link">
             {{dirSpan this.topic.escapedExcerpt htmlSafe="true"}}
             {{#if this.topic.excerptTruncated}}
@@ -79,14 +37,10 @@ export default class TliMiddleSection extends Component {
       {{#if this.topic.image_url}}
         <a href="{{this.topic.lastUnreadUrl}}">
           <div class="topic-image">
-            {{#if this.isVideoUrl}}
-              <div class="topic-video-embed">{{{this.videoEmbedHtml}}}</div>
-            {{else}}
-              {{#if settings.topic_image_backdrop}}
-                <div class="topic-image__backdrop" style={{this.topicBackgroundStyle}} loading="lazy"></div>
-              {{/if}}
-              <img src="{{this.topic.image_url}}" class="topic-image__img" loading="lazy">
+            {{#if settings.topic_image_backdrop}}
+              <div class="topic-image__backdrop" style={{this.topicBackgroundStyle}} loading="lazy"></div>
             {{/if}}
+            <img src="{{this.topic.image_url}}" class="topic-image__img" loading="lazy">
           </div>
         </a>
       {{/if}}

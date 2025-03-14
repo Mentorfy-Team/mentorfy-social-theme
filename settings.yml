@@ -155,8 +155,3 @@ light_btn_hover:
 dark_btn_hover:
   default: "rgba(var(--primary-rgb),.1)"
   description: "Dark buttons hover color"
-
-excerpt_word_limit:
-  type: integer
-  default: 1000
-  description: "Número máximo de palavras a serem exibidas no excerpt na lista de tópicos."
