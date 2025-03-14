@@ -155,3 +155,13 @@ light_btn_hover:
 dark_btn_hover:
   default: "rgba(var(--primary-rgb),.1)"
   description: "Dark buttons hover color"
+
+excerpt_character_limit:
+  type: int
+  default: 1000
+  description: "Limite de caracteres para exibir o texto completo nos tópicos. Acima desse limite, será exibido 'Leia mais'."
+
+embed_video_in_list:
+  type: bool
+  default: false
+  description: "Se ativado, exibirá o vídeo incorporado na listagem de tópicos ao invés de apenas a thumbnail."

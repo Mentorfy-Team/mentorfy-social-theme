@@ -22,13 +22,70 @@ export default class TliMiddleSection extends Component {
     return htmlSafe(`background-image: url(${this.topic.image_url})`);
   }
 
+  get shouldShowReadMore() {
+    if (!this.topic.excerpt) return false;
+    const limit = settings.excerpt_character_limit || 1000;
+    return this.topic.excerpt.length > limit;
+  }
+
+  get formattedExcerpt() {
+    if (!this.topic.excerpt) return "";
+    const limit = settings.excerpt_character_limit || 1000;
+    if (this.topic.excerpt.length <= limit) {
+      return htmlSafe(this.topic.escapedExcerpt);
+    } else {
+      return htmlSafe(this.topic.excerpt.substring(0, limit) + "...");
+    }
+  }
+
+  get isVideoUrl() {
+    if (!this.topic.image_url) return false;
+    const url = this.topic.image_url;
+    return (
+      url.includes("youtube.com") || 
+      url.includes("youtu.be") || 
+      url.includes("vimeo.com") ||
+      url.endsWith(".mp4")
+    );
+  }
+
+  get videoEmbedHtml() {
+    if (!this.isVideoUrl) return "";
+    
+    const url = this.topic.image_url;
+    
+    if (url.includes("youtube.com") || url.includes("youtu.be")) {
+      // Extrair ID do YouTube
+      let videoId = "";
+      if (url.includes("youtube.com/watch?v=")) {
+        videoId = url.split("v=")[1].split("&")[0];
+      } else if (url.includes("youtu.be/")) {
+        videoId = url.split("youtu.be/")[1].split("?")[0];
+      }
+      
+      if (videoId) {
+        return htmlSafe(`<iframe width="100%" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`);
+      }
+    } else if (url.includes("vimeo.com")) {
+      // Extrair ID do Vimeo
+      const vimeoId = url.split("vimeo.com/")[1].split("?")[0];
+      if (vimeoId) {
+        return htmlSafe(`<iframe width="100%" height="315" src="https://player.vimeo.com/video/${vimeoId}" frameborder="0" allowfullscreen></iframe>`);
+      }
+    } else if (url.endsWith(".mp4")) {
+      return htmlSafe(`<video width="100%" height="315" controls><source src="${url}" type="video/mp4"></video>`);
+    }
+    
+    return "";
+  }
+
   <template>
     <div class="tli-middle-section">
       {{#if this.topic.hasExcerpt}}
         <div class="topic-excerpt">
           <a href={{this.topic.url}} class="topic-excerpt-link">
-            {{dirSpan this.topic.escapedExcerpt htmlSafe="true"}}
-            {{#if this.topic.excerptTruncated}}
+            {{dirSpan this.formattedExcerpt htmlSafe="true"}}
+            {{#if this.shouldShowReadMore}}
               <span class="topic-excerpt-more">{{i18n "read_more"}}</span>
             {{/if}}
           </a>
@@ -37,10 +94,16 @@ export default class TliMiddleSection extends Component {
       {{#if this.topic.image_url}}
         <a href="{{this.topic.lastUnreadUrl}}">
           <div class="topic-image">
-            {{#if settings.topic_image_backdrop}}
-              <div class="topic-image__backdrop" style={{this.topicBackgroundStyle}} loading="lazy"></div>
+            {{#if (and this.isVideoUrl settings.embed_video_in_list)}}
+              <div class="topic-video-embed">
+                {{{this.videoEmbedHtml}}}
+              </div>
+            {{else}}
+              {{#if settings.topic_image_backdrop}}
+                <div class="topic-image__backdrop" style={{this.topicBackgroundStyle}} loading="lazy"></div>
+              {{/if}}
+              <img src="{{this.topic.image_url}}" class="topic-image__img" loading="lazy">
             {{/if}}
-            <img src="{{this.topic.image_url}}" class="topic-image__img" loading="lazy">
           </div>
         </a>
       {{/if}}

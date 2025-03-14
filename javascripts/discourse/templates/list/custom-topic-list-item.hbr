@@ -1,87 +1,118 @@
 {{#unless site.useGlimmerTopicList}}
-  {{~raw-plugin-outlet name="topic-list-before-columns"}}
-  
-  {{#if bulkSelectEnabled}}
-    <td class="bulk-select topic-list-data">
-      <label for="bulk-select-{{topic.id}}">
-        <input type="checkbox" class="bulk-select" id="bulk-select-{{topic.id}}">
-      </label>
-    </td>
-  {{/if}}
-  
-  <div class="main-link clearfix">
-    <span class="link-top-line">
-      <div class="byline">
-        {{#unless hideCategory}}
-          {{#unless topic.isPinnedUncategorized}}
-            {{~raw-plugin-outlet name="topic-list-before-category"}}
-            {{category-link topic.category}}
-          {{/unless}}
-        {{/unless}}
-        <div class="author">
-          {{~raw-plugin-outlet name="topic-list-before-status"}}
-          <a href="{{topic.posters.[0].user.userPath}}" data-user-card="{{topic.posters.[0].user.username}}">
-            <div class="topic-list-avatar">
-              {{avatar topic.posters.[0].user imageSize="large"}}
-            </div>
-            <div class="name-and-date">
-              <span class="full-name-tlist">{{topic.posters.[0].user.name}}</span>
-              <span class="username">{{topic.posters.[0].user.username}}</span>
-              <span class="list-date">{{theme-i18n "created_at"}} {{format-date topic.createdAt format="tiny"}}</span>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="link-middle-line" id="{{#if topic.hasExcerpt}}link-middle-line-excerpt{{/if}}">
-        <div class="topic-title">
-          {{~raw "topic-status" topic=topic}}
-          {{~topic-link topic class="raw-link raw-topic-link"}}
-          {{~#if topic.featured_link}}
-            {{~topic-featured-link topic}}
-          {{~/if}}
-          {{~#if showTopicPostBadges}}
-            {{~raw "topic-post-badges" unreadPosts=topic.unread_posts unseen=topic.unseen url=topic.lastUnreadUrl newDotText=newDotText}}
-          {{~/if}}
-        </div>
-        {{~raw-plugin-outlet name="topic-list-after-title"}}
-        {{#if topic.hasExcerpt}}
-          <div class="topic-excerpt">
-            {{raw "list/topic-excerpt" topic=topic}}
+{{~raw-plugin-outlet name="topic-list-before-columns"}}
+
+{{#if bulkSelectEnabled}}
+<td class="bulk-select topic-list-data">
+  <label for="bulk-select-{{topic.id}}">
+    <input type="checkbox" class="bulk-select" id="bulk-select-{{topic.id}}">
+  </label>
+</td>
+{{/if}}
+
+<div class="main-link clearfix">
+  <span class="link-top-line">
+    <div class="byline">
+      {{#unless hideCategory}}
+      {{#unless topic.isPinnedUncategorized}}
+      {{~raw-plugin-outlet name="topic-list-before-category"}}
+      {{category-link topic.category}}
+      {{/unless}}
+      {{/unless}}
+      <div class="author">
+        {{~raw-plugin-outlet name="topic-list-before-status"}}
+        <a href="{{topic.posters.[0].user.userPath}}" data-user-card="{{topic.posters.[0].user.username}}">
+          <div class="topic-list-avatar">
+            {{avatar topic.posters.[0].user imageSize="large"}}
           </div>
-        {{/if}}
-        {{#if topic.image_url}}
-          <a href="{{topic.lastUnreadUrl}}">
-            <div class="topic-image">
-              {{#if (theme-setting "topic_image_backdrop")}}
-                <div class="topic-image__backdrop" style="background-image: url({{topic.image_url}});" loading="lazy"></div>
-              {{/if}}
-              <img src="{{topic.image_url}}" class="topic-image__img" loading="lazy">
-            </div>
-          </a>
-        {{/if}}
-        {{discourse-tags topic mode="list" tagsForUser=tagsForUser}}
-      </div>
-    </span>
-    <div class="link-bottom-line">
-      {{raw "list/action-list" topic=topic postNumbers=topic.liked_post_numbers className="likes" icon="heart"}}
-      {{#if hasLikes}}
-        <a class="likes likes-tlist" href="{{topic.summaryUrl}}">
-          {{number topic.like_count}} {{d-icon "heart"}}
+          <div class="name-and-date">
+            <span class="full-name-tlist">{{topic.posters.[0].user.name}}</span>
+            <span class="username">{{topic.posters.[0].user.username}}</span>
+            <span class="list-date">{{theme-i18n "created_at"}} {{format-date topic.createdAt format="tiny"}}</span>
+          </div>
         </a>
-      {{/if}}
-      <a class="num views {{topic.viewsHeat}}" href="{{topic.summaryUrl}}">
-        {{number topic.views numberKey="views_long"}} {{d-icon "far-eye"}}
-      </a>
-      <a href="{{topic.lastPostUrl}}" data-user-card="{{topic.last_poster_username}}" class="latest-poster-tlist">
-        {{avatar topic.lastPosterUser imageSize="tiny"}}
-      </a>
-      <a class="latest-activity-tlist {{view.likesHeat}}" href="{{topic.lastPostUrl}}">
-        {{~format-date topic.bumpedAt format="tiny" noTitle="true"~}} {{d-icon "clock-rotate-left"}}
-      </a>
-      <a href class="posts-map badge-posts {{view.likesHeat}}" aria-label="{{view.title}}">
-        {{raw-plugin-outlet name="topic-list-before-reply-count"}}
-        {{number topic.replyCount noTitle="true"}} {{d-icon "far-comment"}}
-      </a>
+      </div>
     </div>
+    <div class="link-middle-line" id="{{#if topic.hasExcerpt}}link-middle-line-excerpt{{/if}}">
+      <div class="topic-title">
+        {{~raw "topic-status" topic=topic}}
+        {{~topic-link topic class="raw-link raw-topic-link"}}
+        {{~#if topic.featured_link}}
+        {{~topic-featured-link topic}}
+        {{~/if}}
+        {{~#if showTopicPostBadges}}
+        {{~raw "topic-post-badges" unreadPosts=topic.unread_posts unseen=topic.unseen url=topic.lastUnreadUrl
+        newDotText=newDotText}}
+        {{~/if}}
+      </div>
+      {{~raw-plugin-outlet name="topic-list-after-title"}}
+      {{#if topic.hasExcerpt}}
+      <div class="topic-excerpt">
+        {{#if (gt topic.excerpt.length (theme-setting "excerpt_character_limit"))}}
+        {{raw "list/topic-excerpt" topic=topic}}
+        <span class="topic-excerpt-more">{{i18n "read_more"}}</span>
+        {{else}}
+        {{topic.excerpt}}
+        {{/if}}
+      </div>
+      {{/if}}
+      {{#if topic.image_url}}
+      <a href="{{topic.lastUnreadUrl}}">
+        <div class="topic-image">
+          {{#if (and (or (includes topic.image_url "youtube.com") (includes topic.image_url "youtu.be") (includes
+          topic.image_url "vimeo.com") (ends-with topic.image_url ".mp4")) (theme-setting "embed_video_in_list"))}}
+          <div class="topic-video-embed">
+            {{#if (or (includes topic.image_url "youtube.com") (includes topic.image_url "youtu.be"))}}
+            {{#if (includes topic.image_url "youtube.com/watch?v=")}}
+            <iframe width="100%" height="315"
+              src="https://www.youtube.com/embed/{{split-string (split-string topic.image_url " v=") " &" first=true
+              second=true}}" frameborder="0" allowfullscreen></iframe>
+            {{else if (includes topic.image_url "youtu.be/")}}
+            <iframe width="100%" height="315"
+              src="https://www.youtube.com/embed/{{split-string (split-string topic.image_url " youtu.be/") "?"
+              first=true second=true}}" frameborder="0" allowfullscreen></iframe>
+            {{/if}}
+            {{else if (includes topic.image_url "vimeo.com")}}
+            <iframe width="100%" height="315"
+              src="https://player.vimeo.com/video/{{split-string (split-string topic.image_url " vimeo.com/") "?"
+              first=true second=true}}" frameborder="0" allowfullscreen></iframe>
+            {{else if (ends-with topic.image_url ".mp4")}}
+            <video width="100%" height="315" controls>
+              <source src="{{topic.image_url}}" type="video/mp4">
+            </video>
+            {{/if}}
+          </div>
+          {{else}}
+          {{#if (theme-setting "topic_image_backdrop")}}
+          <div class="topic-image__backdrop" style="background-image: url({{topic.image_url}});" loading="lazy"></div>
+          {{/if}}
+          <img src="{{topic.image_url}}" class="topic-image__img" loading="lazy">
+          {{/if}}
+        </div>
+      </a>
+      {{/if}}
+      {{discourse-tags topic mode="list" tagsForUser=tagsForUser}}
+    </div>
+  </span>
+  <div class="link-bottom-line">
+    {{raw "list/action-list" topic=topic postNumbers=topic.liked_post_numbers className="likes" icon="heart"}}
+    {{#if hasLikes}}
+    <a class="likes likes-tlist" href="{{topic.summaryUrl}}">
+      {{number topic.like_count}} {{d-icon "heart"}}
+    </a>
+    {{/if}}
+    <a class="num views {{topic.viewsHeat}}" href="{{topic.summaryUrl}}">
+      {{number topic.views numberKey="views_long"}} {{d-icon "far-eye"}}
+    </a>
+    <a href="{{topic.lastPostUrl}}" data-user-card="{{topic.last_poster_username}}" class="latest-poster-tlist">
+      {{avatar topic.lastPosterUser imageSize="tiny"}}
+    </a>
+    <a class="latest-activity-tlist {{view.likesHeat}}" href="{{topic.lastPostUrl}}">
+      {{~format-date topic.bumpedAt format="tiny" noTitle="true"~}} {{d-icon "clock-rotate-left"}}
+    </a>
+    <a href class="posts-map badge-posts {{view.likesHeat}}" aria-label="{{view.title}}">
+      {{raw-plugin-outlet name="topic-list-before-reply-count"}}
+      {{number topic.replyCount noTitle="true"}} {{d-icon "far-comment"}}
+    </a>
   </div>
+</div>
 {{/unless}}
