@@ -1,3 +1,8 @@
+<script type="text/discourse-plugin" version="0.8">
+  // Carregar os helpers para o funcionamento correto do tema
+  require("discourse/helpers/string-helpers");
+</script>
+
 <style>
   /* Defina as variáveis CSS globais */
   :root {
@@ -48,5 +53,55 @@
     }
 
     ;
+
+    --light-bg: {
+        {
+        theme-setting "light_bg"
+      }
+    }
+
+    ;
+
+    /* Definir variáveis que serão usadas pela folha de estilo */
+    --fkb-bg: var(--light-bg);
+    --fkb-btn: var(--light-btn);
+
+    /* Cores dos modos claro e escuro */
+    --light-btn: {
+        {
+        theme-setting "light_btn"
+      }
+    }
+
+    ;
+
+    --dark-btn: {
+        {
+        theme-setting "dark_btn"
+      }
+    }
+
+    ;
+
+    --light-btn-hover: {
+        {
+        theme-setting "light_btn_hover"
+      }
+    }
+
+    ;
+
+    --dark-btn-hover: {
+        {
+        theme-setting "dark_btn_hover"
+      }
+    }
+
+    ;
+  }
+
+  .discourse-dark-theme {
+    --fkb-bg: var(--dark-bg);
+    --fkb-btn: var(--dark-btn);
   }
 </style>
