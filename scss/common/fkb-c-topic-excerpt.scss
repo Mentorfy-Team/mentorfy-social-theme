@@ -1,0 +1,55 @@
+// FKBC - Topic Excerpt
+// Estilos para melhorar a exibição de resumos mais longos
+
+.topic-list {
+
+  .main-link,
+  .topic-list-main-link {
+    .topic-excerpt {
+      max-height: none; // Remover limite de altura para permitir mais conteúdo
+
+      .topic-excerpt-link {
+        display: inline-block;
+        width: 100%;
+        max-width: 100%;
+
+        // Melhor formatação de texto para resumos longos
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+
+        // Espaçamento adequado
+        line-height: 1.6;
+        margin-bottom: 1em;
+      }
+
+      .topic-excerpt-more {
+        display: inline-block;
+        margin-left: 0.5em;
+        color: var(--tertiary);
+        font-weight: bold;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+// Estilo específico para dispositivos móveis
+html.mobile-view {
+  .topic-list {
+
+    .main-link,
+    .topic-list-main-link {
+      .topic-excerpt {
+        font-size: var(--font-down-1);
+
+        .topic-excerpt-link {
+          line-height: 1.5;
+        }
+      }
+    }
+  }
+}
