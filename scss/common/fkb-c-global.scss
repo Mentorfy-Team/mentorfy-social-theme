@@ -1,13 +1,19 @@
 // FKBC - Global
 
-// Global
+// Global Variables - Define before they are used
+$border_radius_button: var(--border-radius-button, "2em");
+$border_radius_em: var(--border-radius-em, "1em");
+$border_radius_input: var(--border-radius-input, "2em");
+$border_radius_select_body: var(--border-radius-select-body, "0.75em");
+$border_radius_avatar: var(--border-radius-avatar, 50%);
+$dark_bg: var(--dark-bg, "#18191a");
 
 body {
   background: var(--fkb-bg);
 }
 
 // Resets the Versatille banner modified width on main-outlet
-#main > div #main-outlet {
+#main>div #main-outlet {
   max-width: 100%;
   width: 100%;
 }
@@ -63,6 +69,7 @@ img.avatar,
 #banner {
   background: var(--tertiary-low);
   border-radius: var(--d-default-border-radius);
+
   .lightbox-wrapper,
   .lightbox-wrapper a.lightbox,
   .lightbox-wrapper img {
@@ -92,6 +99,7 @@ img.avatar,
 .d-modal {
   &__container {
     border-radius: var(--d-default-border-radius);
+
     .mobile-view & {
       border-radius: var(--d-default-border-radius) var(--d-default-border-radius) 0 0;
     }
@@ -108,7 +116,7 @@ img.avatar,
 
 // Admin
 
-.admin-controls .nav-pills > li a.active {
+.admin-controls .nav-pills>li a.active {
   background: transparent;
 }
 

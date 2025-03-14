@@ -157,7 +157,7 @@ dark_btn_hover:
   description: "Dark buttons hover color"
 
 excerpt_character_limit:
-  type: int
+  type: integer
   default: 1000
   description: "Limite de caracteres para exibir o texto completo nos tópicos. Acima desse limite, será exibido 'Leia mais'."
 
