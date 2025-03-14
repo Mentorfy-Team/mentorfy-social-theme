@@ -24,13 +24,13 @@ export default class TliMiddleSection extends Component {
 
   get shouldShowReadMore() {
     if (!this.topic.excerpt) return false;
-    const limit = Number(settings.excerpt_character_limit) || 1000;
+    const limit = settings.excerpt_character_limit || 1000;
     return this.topic.excerpt.length > limit;
   }
 
   get formattedExcerpt() {
     if (!this.topic.excerpt) return "";
-    const limit = Number(settings.excerpt_character_limit) || 1000;
+    const limit = settings.excerpt_character_limit || 1000;
     if (this.topic.excerpt.length <= limit) {
       return htmlSafe(this.topic.escapedExcerpt);
     } else {

@@ -51,7 +51,7 @@
         {{raw "list/topic-excerpt" topic=topic}}
         <span class="topic-excerpt-more">{{i18n "read_more"}}</span>
         {{else}}
-        {{{topic.excerpt}}}
+        {{topic.excerpt}}
         {{/if}}
       </div>
       {{/if}}
