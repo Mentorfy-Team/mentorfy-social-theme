@@ -27,4 +27,13 @@ registerHelper("split-string", function(str, separator, options) {
   }
   
   return parts[0];
+});
+
+// Helper para verificação lógica AND
+registerHelper("and", function(...args) {
+  // Remove o último argumento (options)
+  const options = args.pop();
+  
+  // Verifica se todos os argumentos são verdadeiros
+  return args.every(Boolean);
 }); 
