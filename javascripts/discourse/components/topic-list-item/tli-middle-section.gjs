@@ -25,11 +25,6 @@ export default class TliMiddleSection extends Component {
   get isVideoUrl() {
     if (!this.topic.image_url) return false;
     
-    // Usar a propriedade definida pelo inicializador, se disponível
-    if (this.topic.has_video !== undefined) {
-      return this.topic.has_video;
-    }
-    
     // Detecta se a URL da imagem é de um vídeo (YouTube, Vimeo, etc.)
     return (
       this.topic.image_url.includes("youtube.com") ||
@@ -41,11 +36,6 @@ export default class TliMiddleSection extends Component {
 
   get videoEmbedHtml() {
     if (!this.isVideoUrl) return "";
-    
-    // Usar a URL incorporada definida pelo inicializador, se disponível
-    if (this.topic.video_embed_url) {
-      return htmlSafe(`<iframe width="100%" height="100%" src="${this.topic.video_embed_url}" frameborder="0" allowfullscreen></iframe>`);
-    }
     
     // Extrair o ID do vídeo do YouTube ou Vimeo
     let videoId = "";
