@@ -3,9 +3,8 @@
   "license_url": null,
   "about_url": "https://github.com/Mentorfy-Team/mentorfy-social-theme",
   "authors": "Mentorfy Team",
-  "theme_version": "1.4.1",
-  "assets": {
-  },
+  "theme_version": "1.4.2",
+  "assets": {},
   "color_schemes": {
     "Mentorfy Social Theme - Light": {
       "primary": "242526",
@@ -30,7 +29,7 @@
       "header_primary": "ffffff",
       "highlight": "147efb",
       "selected": "033876",
-      "hover": "022c5d",  
+      "hover": "022c5d",
       "danger": "f8745c",
       "success": "42b72a",
       "love": "fa6c8d"
