@@ -1,9 +1,10 @@
 // Sidebar More is now a button 
 // Make it similar to the others link
 
-.btn-flat.sidebar-more-section-links-details-summary,
-.sidebar-more-section-links-details-summary.json-editor-btn-collapse {
-  border-radius: 0;
+.sidebar-section-link-wrapper {
+  .--link-button {
+    border-radius: 0;
+  }
 }
 
 .category-toggle {
