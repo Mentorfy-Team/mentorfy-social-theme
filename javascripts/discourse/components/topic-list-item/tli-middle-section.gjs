@@ -1,7 +1,6 @@
 import Component from "@glimmer/component";
 import { htmlSafe } from "@ember/template";
 import { gt } from "truth-helpers";
-import { and } from "discourse/theme-2/discourse/helpers/string-helpers";
 import concatClass from "discourse/helpers/concat-class";
 import icon from "discourse/helpers/d-icon";
 import number from "discourse/helpers/number";
