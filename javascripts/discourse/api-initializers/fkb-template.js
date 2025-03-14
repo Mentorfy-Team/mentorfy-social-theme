@@ -3,8 +3,8 @@ import { findRawTemplate } from "discourse-common/lib/raw-templates";
 import { htmlSafe } from "@ember/template";
 import { RUNTIME_OPTIONS } from "discourse-common/lib/raw-handlebars-helpers";
 import { schedule } from "@ember/runloop";
-import TliTopSection from "discourse/components/topic-list-item/tli-top-section";
-import TliMiddleSection from "discourse/components/topic-list-item/tli-middle-section";
+import TliTopSection from "../components/topic-list-item/tli-top-section";
+import TliMiddleSection from "../components/topic-list-item/tli-middle-section";
 
 export default apiInitializer("1.8.0", (api) => {
   const site = api.container.lookup("site:main");
