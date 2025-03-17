@@ -2,11 +2,17 @@
 
 // Topic View
 
+.topic-post:not(:first-child) {
+  display: none;
+}
+
+
 .timeline-container {
   .topic-timeline {
     .timeline-handle {
       background: var(--tertiary);
     }
+
     .timeline-scrollarea {
       border-color: var(--tertiary-medium);
     }
@@ -24,7 +30,8 @@
       border-bottom-left-radius: var(--d-default-border-radius);
       border-bottom-right-radius: var(--d-default-border-radius);
     }
-    .topic-admin-menu-button-container + #topic-progress,       
+
+    .topic-admin-menu-button-container+#topic-progress,
     #topic-progress {
       border-top-left-radius: var(--d-default-border-radius);
       border-top-right-radius: var(--d-default-border-radius);
@@ -35,16 +42,18 @@
   }
 }
 
-.post-notice{
+.post-notice {
   border-radius: var(--d-default-border-radius);
   border-top: none;
 }
 
 .topic-map {
   border-radius: var(--d-default-border-radius);
+
   section {
     border-top: none;
   }
+
   .buttons .btn {
     border-radius: var(--d-default-border-radius);
   }
@@ -80,15 +89,19 @@
 }
 
 .small-action {
+
   .topic-avatar,
   .small-action-desc {
     border-top: none;
   }
+
   &.topic-post-visited {
     padding: 8px 0;
+
     .topic-post-visited-line {
       border-bottom: 1px solid var(--tertiary);
       line-height: 0;
+
       .topic-post-visited-message {
         background-color: var(--tertiary);
         color: #ffffff;
@@ -113,15 +126,19 @@ button.save-fast-edit {
       padding: 10px;
       border-radius: var(--d-button-border-radius);
       max-height: 37px;
+
       &.no-text {
         max-width: 37px;
       }
+
       &.toggle-like:not(.my-likes) {
         .d-icon {
           color: var(--love);
         }
       }
+
       &.delete {
+
         &:active,
         &:hover,
         &:focus {
@@ -129,14 +146,17 @@ button.save-fast-edit {
             color: var(--secondary);
           }
         }
-      }  
+      }
+
       .d-icon,
       .d-button-label {
         color: var(--primary-high);
         pointer-events: none;
       }
     }
+
     .double-button {
+
       button.my-likes,
       button.read-indicator,
       button.regular-likes {
@@ -145,18 +165,22 @@ button.save-fast-edit {
           padding-left: 15px;
         }
       }
+
       &:hover,
       &:focus {
         button.button-count {
           background: transparent;
         }
       }
+
       button.button-count {
         padding: 10px 5px 10px 10px;
-        + .toggle-like,
-        + .create-flag {
+
+        +.toggle-like,
+        +.create-flag {
           padding: 10px;
         }
+
         &:active,
         &:hover,
         &:focus {
@@ -164,8 +188,10 @@ button.save-fast-edit {
         }
       }
     }
+
     .extra-buttons {
       .accepted {
+
         .d-icon,
         .d-button-label {
           color: green;
@@ -173,15 +199,18 @@ button.save-fast-edit {
       }
     }
   }
+
   .replies-button-visible .show-replies,
   .show-replies {
     border-radius: var(--d-button-border-radius);
     margin-right: 0.25em;
     color: var(--primary-high);
+
     &:focus,
     &:hover {
       background: var(--primary-low);
     }
+
     .d-icon {
       color: var(--primary-high);
     }
@@ -192,6 +221,7 @@ button.save-fast-edit {
 
 .discourse-reactions-double-button {
   border-radius: var(--d-button-border-radius);
+
   &:hover,
   &:focus {
     background: var(--primary-low) !important;
@@ -200,9 +230,11 @@ button.save-fast-edit {
 
 .discourse-reactions-counter {
   padding: 0 10px 0 0;
+
   .discourse-reactions-state-panel .container {
     border-radius: calc(var(--d-default-border-radius) / 2);
   }
+
   &.only-like .reactions-counter {
     color: var(--primary-medium);
     padding-right: 5px;
@@ -221,10 +253,12 @@ aside.quote {
     border-radius: var(--d-default-border-radius) var(--d-default-border-radius) 0 0;
     overflow: hidden;
   }
+
   blockquote {
     border-left: 5px solid var(--tertiary);
   }
-  .title + blockquote {
+
+  .title+blockquote {
     border-left: 5px solid var(--tertiary);
     border-radius: 0 0 var(--d-default-border-radius) var(--d-default-border-radius);
   }
@@ -232,6 +266,7 @@ aside.quote {
 
 .quote-controls {
   color: var(--tertiary);
+
   .d-icon {
     color: var(--tertiary);
   }
@@ -246,6 +281,7 @@ blockquote {
   &.visible {
     border-radius: var(--d-default-border-radius);
   }
+
   .btn {
     box-shadow: none !important;
   }
@@ -254,30 +290,35 @@ blockquote {
 // Solved Quote
 
 aside.quote.accepted-answer {
-  > .title {
+  >.title {
     padding: 12px;
     background: green;
     border: 3px solid green;
     color: #fff;
     border-bottom: 0;
+
     .fa.accepted {
       color: #fff;
     }
+
     span.by {
       a {
         color: #fff;
         text-decoration: underline;
       }
     }
+
     a {
       color: #fff;
       text-decoration: underline;
     }
+
     .quote-controls .d-icon {
       color: #fff;
     }
   }
-  > blockquote {
+
+  >blockquote {
     border: 3px solid green;
   }
 }
@@ -290,6 +331,7 @@ aside.quote.accepted-answer {
   margin-left: 3px;
   margin-right: 0.25em;
   padding: 9px 10px;
+
   span {
     padding: 7px 1px;
   }
@@ -301,6 +343,7 @@ aside.quote.accepted-answer {
   .topic-navigation-popup {
     border-radius: var(--d-default-border-radius);
     padding: 1em;
+
     p {
       margin-bottom: 0;
     }
@@ -314,6 +357,7 @@ aside.quote.accepted-answer {
     border-radius: var(--d-default-border-radius) var(--d-default-border-radius) 0 0;
     margin: 0;
   }
+
   // Invite page
   .invite-form,
   .invite-success {
@@ -334,6 +378,7 @@ aside.quote.accepted-answer {
 
 .link-share-actions .alt-actions {
   width: 100%;
+
   button {
     width: 100%;
   }
@@ -364,6 +409,7 @@ blockquote aside.onebox {
 .discourse-no-touch {
   a.lightbox {
     border-radius: var(--d-default-border-radius);
+
     &:hover {
       border-radius: var(--d-default-border-radius);
     }
@@ -375,6 +421,7 @@ blockquote aside.onebox {
     max-width: 100%;
     border-radius: var(--d-default-border-radius);
   }
+
   .revision-content,
   .markdown {
     img {
@@ -399,6 +446,7 @@ blockquote aside.onebox {
 .video-container {
   background: #000;
   border-radius: var(--d-default-border-radius);
+
   video {
     border-radius: var(--d-default-border-radius);
   }
@@ -420,6 +468,7 @@ blockquote aside.onebox {
   .poll-options .poll-option-value button {
     margin-bottom: 9px;
   }
+
   .poll-type .poll-type-value {
     padding: 6px;
     border-radius: var(--d-button-border-radius);
@@ -443,31 +492,37 @@ blockquote aside.onebox {
     position: relative;
     margin-block: unset;
     margin-bottom: 1em;
+
     li {
-     .mobile-view & {
+      .mobile-view & {
         &:last-child {
-          margin-right: unset; 
+          margin-right: unset;
         }
       }
+
       .btn {
         color: var(--primary);
         background-color: transparent;
         font-size: var(--font-up-1);
         padding: 0.5em;
         margin: 0.25em;
+
         &:hover {
           box-shadow: unset;
         }
+
         &.active {
           box-shadow: unset;
         }
       }
     }
   }
+
   .more-topics__lists {
     .more-topics__list-title {
       font-size: var(--font-up-3);
     }
+
     .more-topics__browse-more {
       .badge-wrapper.box span {
         display: inline-flex;
